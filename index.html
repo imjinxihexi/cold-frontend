@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        "Helvetica Neue", Arial, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(10px);
+      max-width: 1200px;
+      width: 95%;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    h1 {
+      font-size: 32px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      color: #2c3e50;
+      background: linear-gradient(45deg, #667eea, #764ba2);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .subtitle {
+      font-size: 16px;
+      color: #7f8c8d;
+      margin-bottom: 32px;
+    }
+
+    /* 搜索框预留空间 */
+    .search-container {
+      max-width: 400px;
+      margin: 0 auto 32px;
+      position: relative;
+    }
+
+    .search-box {
+      width: 100%;
+      padding: 12px 20px;
+      border: 2px solid transparent;
+      border-radius: 25px;
+      background: rgba(255, 255, 255, 0.9);
+      font-size: 16px;
+      outline: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .search-box:focus {
+      border-color: #667eea;
+      box-shadow: 0 4px 20px rgba(102, 126, 234, 0.3);
+    }
+
+    /* 网格布局 */
+    .demo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+      margin-top: 32px;
+    }
+
+    .demo-card {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .demo-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    .demo-link {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      height: 100%;
+    }
+
+    .demo-card-header {
+      padding: 24px 24px 16px;
+      text-align: center;
+    }
+
+    .demo-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 16px;
+      background: linear-gradient(45deg, #667eea, #764ba2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+      font-size: 32px;
+      color: white;
+    }
+
+    .demo-title {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #2c3e50;
+    }
+
+    .demo-description {
+      font-size: 14px;
+      color: #7f8c8d;
+      line-height: 1.5;
+      padding: 0 24px 24px;
+    }
+
+    .demo-tags {
+      padding: 0 24px 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+    }
+
+    .demo-tag {
+      padding: 4px 12px;
+      background: rgba(102, 126, 234, 0.1);
+      color: #667eea;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    /* 响应式设计 */
+    @media (max-width: 768px) {
+      .container {
+        padding: 24px;
+        width: 95%;
+      }
+
+      .demo-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      h1 {
+        font-size: 24px;
+      }
+    }
+
+    @media (min-width: 769px) and (max-width: 1024px) {
+      .demo-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 1025px) {
+      .demo-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (min-width: 1400px) {
+      .demo-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+  </style>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>CSS 布局演示</h1>
+        <p class="subtitle">探索现代 CSS 布局技术与最佳实践</p>
+
+        <!-- 搜索框预留位置 -->
+        <div class="search-container">
+          <input
+            type="text"
+            class="search-box"
+            placeholder="搜索演示项目..."
+            style="display: none"
+          />
+        </div>
+      </div>
+
+      <!-- 网格布局 -->
+      <div class="demo-grid">
+        <div class="demo-card">
+          <a href="./src/aspectRatioBox.html" class="demo-link">
+            <div class="demo-card-header">
+              <div class="demo-icon">📐</div>
+              <div class="demo-title">AspectRatioBox</div>
+            </div>
+            <div class="demo-description">
+              保持矩形宽高比例的布局实现，展示如何使用 CSS 创建固定宽高比的容器
+            </div>
+            <div class="demo-tags">
+              <span class="demo-tag">CSS布局</span>
+              <span class="demo-tag">宽高比</span>
+              <span class="demo-tag">基础</span>
+            </div>
+          </a>
+        </div>
+
+        <!-- 示例卡片 - 未来可以添加更多 -->
+        <div class="demo-card" style="opacity: 0.6">
+          <a href="#" class="demo-link">
+            <div class="demo-card-header">
+              <div class="demo-icon">🎨</div>
+              <div class="demo-title">Flexbox Layout</div>
+            </div>
+            <div class="demo-description">
+              灵活的弹性布局系统演示，包含各种 Flexbox 应用场景
+            </div>
+            <div class="demo-tags">
+              <span class="demo-tag">Flexbox</span>
+              <span class="demo-tag">布局</span>
+              <span class="demo-tag">中级</span>
+            </div>
+          </a>
+        </div>
+
+        <div class="demo-card" style="opacity: 0.6">
+          <a href="#" class="demo-link">
+            <div class="demo-card-header">
+              <div class="demo-icon">🔲</div>
+              <div class="demo-title">Grid System</div>
+            </div>
+            <div class="demo-description">
+              强大的网格布局系统，展示 CSS Grid 的各种高级用法
+            </div>
+            <div class="demo-tags">
+              <span class="demo-tag">Grid</span>
+              <span class="demo-tag">布局</span>
+              <span class="demo-tag">高级</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
