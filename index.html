@@ -76,6 +76,11 @@
     .search-box:focus {
       border-color: #667eea;
       box-shadow: 0 4px 20px rgba(102, 126, 234, 0.3);
+      transform: translateY(-2px);
+    }
+
+    .search-box::placeholder {
+      color: #95a5a6;
     }
 
     /* 网格布局 */
@@ -140,7 +145,7 @@
     }
 
     .demo-tags {
-      padding: 0 24px 20px;
+      padding: 0 24px 16px;
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
@@ -154,6 +159,85 @@
       border-radius: 20px;
       font-size: 12px;
       font-weight: 500;
+    }
+
+    .demo-preview {
+      margin: 0 16px 16px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.06),
+        inset 0 1px 2px rgba(0, 0, 0, 0.04);
+      background: #f1f3f4;
+      border: 1px solid rgba(0, 0, 0, 0.02);
+    }
+
+    .demo-preview iframe {
+      width: 100%;
+      height: 200px;
+      border: none;
+      display: block;
+      background: white;
+    }
+
+    .demo-card:hover .demo-preview {
+      box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.08),
+        inset 0 1px 3px rgba(0, 0, 0, 0.06);
+      background: #eef0f1;
+    }
+
+    /* 为有预览的卡片调整布局 */
+    .demo-card.has-preview {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .demo-card.has-preview .demo-link {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .demo-card.has-preview .demo-description {
+      padding: 0 24px 16px;
+    }
+
+    /* 即将推出的卡片样式 */
+    .demo-card.coming-soon {
+      position: relative;
+      opacity: 0.7;
+      cursor: default;
+    }
+
+    .demo-card.coming-soon::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(255, 255, 255, 0.3);
+      backdrop-filter: blur(1px);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .coming-soon-badge {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: linear-gradient(45deg, #ff6b9d, #ffa500);
+      color: white;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 10px;
+      font-weight: 600;
+      z-index: 2;
+      box-shadow: 0 2px 8px rgba(255, 107, 157, 0.3);
+    }
+
+    .demo-card.coming-soon:hover {
+      transform: translateY(-4px);
+      opacity: 0.8;
     }
 
     /* 响应式设计 */
@@ -197,20 +281,19 @@
         <h1>CSS 布局演示</h1>
         <p class="subtitle">探索现代 CSS 布局技术与最佳实践</p>
 
-        <!-- 搜索框预留位置 -->
+        <!-- 搜索框 -->
         <div class="search-container">
           <input
             type="text"
             class="search-box"
-            placeholder="搜索演示项目..."
-            style="display: none"
+            placeholder="🔍 搜索演示项目..."
           />
         </div>
       </div>
 
       <!-- 网格布局 -->
       <div class="demo-grid">
-        <div class="demo-card">
+        <div class="demo-card has-preview">
           <a href="./src/aspectRatioBox.html" class="demo-link">
             <div class="demo-card-header">
               <div class="demo-icon">📐</div>
@@ -224,12 +307,15 @@
               <span class="demo-tag">宽高比</span>
               <span class="demo-tag">基础</span>
             </div>
+            <div class="demo-preview">
+              <iframe src="./src/aspectRatioBox.html"></iframe>
+            </div>
           </a>
         </div>
 
         <!-- 示例卡片 - 未来可以添加更多 -->
-        <div class="demo-card" style="opacity: 0.6">
-          <a href="#" class="demo-link">
+        <div class="demo-card coming-soon">
+          <div class="demo-link">
             <div class="demo-card-header">
               <div class="demo-icon">🎨</div>
               <div class="demo-title">Flexbox Layout</div>
@@ -242,11 +328,12 @@
               <span class="demo-tag">布局</span>
               <span class="demo-tag">中级</span>
             </div>
-          </a>
+            <div class="coming-soon-badge">即将推出</div>
+          </div>
         </div>
 
-        <div class="demo-card" style="opacity: 0.6">
-          <a href="#" class="demo-link">
+        <div class="demo-card coming-soon">
+          <div class="demo-link">
             <div class="demo-card-header">
               <div class="demo-icon">🔲</div>
               <div class="demo-title">Grid System</div>
@@ -259,7 +346,8 @@
               <span class="demo-tag">布局</span>
               <span class="demo-tag">高级</span>
             </div>
-          </a>
+            <div class="coming-soon-badge">即将推出</div>
+          </div>
         </div>
       </div>
     </div>
