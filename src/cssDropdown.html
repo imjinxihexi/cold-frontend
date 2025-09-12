@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <!--  用 css 实现 下拉折叠效果 -->
+  <body>
+    <div class="dropdown-menu">
+      <button class="dropdown-menu-button">下拉菜单</button>
+      <div class="dropdown-menu-contaner">
+        <div class="dropdown-menu-item">我是下拉项1</div>
+        <div class="dropdown-menu-item">我是下拉项2</div>
+        <div class="dropdown-menu-item">我是下拉项3</div>
+        <div class="dropdown-menu-item">我是下拉项4</div>
+        <div class="dropdown-menu-item">我是下拉项5</div>
+        <div class="dropdown-menu-item">我是下拉项6</div>
+        <div class="dropdown-menu-item">我是下拉项7</div>
+      </div>
+    </div>
+  </body>
+  <style>
+    .dropdown-menu {
+      width: fit-content;
+    }
+    .dropdown-menu-button {
+      width: 100px;
+    }
+    .dropdown-menu-contaner {
+      margin-top: 1px;
+      border: 1px solid #340606;
+      width: 100%;
+      transform: scaleY(0);
+      transition: transform 0.3s ease-in-out;
+      transform-origin: top center;
+    }
+    .dropdown-menu:hover .dropdown-menu-contaner {
+      transform: scaleY(1);
+    }
+  </style>
+</html>
